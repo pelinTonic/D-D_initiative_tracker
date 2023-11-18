@@ -174,5 +174,19 @@ def save(name: str, initiative: int, AC: int, condition: str, hp: int, main_tree
     populate_treeview(main_treeview)
 
 def update(name: str, database: str, table_name: str, hp:str, treeview: ttk.Treeview, condition: str):
+    """
+    Update records in a database table.
+
+    Args:
+        name (str): The name of the database connection.
+        database (str): The name of the database.
+        table_name (str): The name of the table to update.
+        hp (str): The new value for the 'hp' column in the table.
+        treeview (ttk.Treeview): The Treeview widget to display the updated data.
+        condition (str): The SQL condition to identify the records to update.
+
+    Returns:
+    None
+    """
     update_database(name, database, table_name, hp, condition)
     populate_treeview(treeview)

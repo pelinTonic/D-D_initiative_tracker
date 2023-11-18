@@ -165,6 +165,19 @@ def delete_from_database(number: int, database_name: str, table_name: str):
 
 
 def update_database(name: str, database_name: str, table_name: str, hp: int, condition: str):
+    """
+    Update records in a SQLite database table.
+
+    Args:
+        name (str): The name of the database connection.
+        database_name (str): The name of the database.
+        table_name (str): The name of the table to update.
+        hp (int): The new value for the 'hp' column in the table.
+        condition (str): The SQL condition to identify the records to update.
+
+    Returns:
+    None
+    """
     try:
         conn = sqlite3.connect(database_name)
         cursor = conn.cursor()
