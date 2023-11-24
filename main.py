@@ -39,6 +39,9 @@ options = ["None","Blinded","Charmed","Deafened","Frightened","Grappled","Incapa
 selected_option = tk.StringVar()
 condition_dropdown = tk.OptionMenu(lower_label_frame, selected_option, *options)
 condition_dropdown.grid(row=3, column=1)
+condition_dictionary = open_json_file("conditions.json")
+info_button = tk.Button(lower_label_frame, text = "Info", command=lambda: show_info(selected_option.get(), condition_dictionary))
+info_button.grid(row=3, column=2, padx=5, pady=5)
 hp_entry = tk.Entry(lower_label_frame)
 hp_entry.grid(row=4, column=1, padx=5, pady=5)
 
@@ -66,3 +69,6 @@ update_button.grid(row=0, column=3, padx=5, pady=5)
 
 
 main_screen.mainloop()
+
+
+

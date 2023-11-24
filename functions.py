@@ -3,6 +3,33 @@ from tkinter import ttk
 from database_manager import * 
 from tkinter import END
 from error_handling import *
+from tkinter import messagebox
+import json
+
+def open_json_file(file_name: str) -> dict:
+    """Opens and reads a JSON file, returning its contents as a dictionary
+
+    Args:
+        file_name (str): The name of the JSON file to be opened.
+
+    Returns:
+        dict: A dictionary containing the contents of the JSON file.
+    """
+    with open(file_name, 'r') as json_file:
+        file = json.load(json_file)
+        return file
+    
+def show_info(selection: str, dict: dict):
+    """ Display information based on the selected key from a dictionary.
+
+    Args:
+        selection (str): The key to search for in the dictionary.
+        dict (dict): The dictionary containing information.
+    """
+    if selection != "None" or selection != "":
+        messagebox.showinfo("",dict[selection])
+    else:
+        pass
 
 def show_selection(main_treeview: ttk.Treeview, name_entry:tk.Entry, initiative_entry: tk.Entry, ac_entry: tk.Entry, selection_entry: tk.Entry, hp_entry: tk.Entry):
     """Update entry widgets with the selected values from a Treeview
@@ -155,6 +182,8 @@ def save(name: str, initiative: int, AC: int, condition: str, hp: int, main_tree
         main_treeview(ttk.Treeview): treeview that will be updated
 
     """
+    #Ovo pribacit u database_manager.py i napraviti univerzalnije
+
     connection = create_connection("initiative_tracker.db")
     create_table_sql = """CREATE TABLE IF NOT EXISTS initiative (
     number INTEGER PRIMARY KEY,
